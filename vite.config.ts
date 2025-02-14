@@ -1,32 +1,18 @@
 import { svelteTesting } from '@testing-library/svelte/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
-import { onHttpServerUpgrade, createWSSGlobalInstance } from './src/lib/server/websocket';
 
 export default defineConfig({
-  plugins: [
-    sveltekit(),
-    {
-      name: 'integratedWebsocketServer',
-      configureServer(server) {
-        createWSSGlobalInstance();
-        server.httpServer?.on('upgrade', onHttpServerUpgrade);
-      },
-      configurePreviewServer(server) {
-        createWSSGlobalInstance();
-        server.httpServer?.on('upgrade', onHttpServerUpgrade);
-      }
-    }
-  ],
+  plugins: [sveltekit()],
   server: {
     port: 5173
   },
+  envPrefix: ['PUBLIC_'],
   test: {
     workspace: [
       {
         extends: './vite.config.ts',
         plugins: [svelteTesting()],
-
         test: {
           name: 'client',
           environment: 'jsdom',
@@ -38,7 +24,6 @@ export default defineConfig({
       },
       {
         extends: './vite.config.ts',
-
         test: {
           name: 'server',
           environment: 'node',

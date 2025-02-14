@@ -14,19 +14,17 @@
     "lint": "prettier --check . && eslint .",
     "test:unit": "vitest",
     "test": "npm run test:unit -- --run",
-    "start": "node -r dotenv/config build"
+    "start": "node -r dotenv/config server.js"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.6",
     "@eslint/js": "^9.20.0",
-    "@sveltejs/adapter-node": "^5.2.12",
+    "@sveltejs/adapter-static": "^3.0.0",
     "@sveltejs/kit": "^2.17.1",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.2.7",
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.13.2",
-    "@types/ws": "^8.5.14",
+    "@vitejs/plugin-basic-ssl": "^1.2.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.20.1",
     "eslint-config-prettier": "^10.0.1",
@@ -46,7 +44,6 @@
     "vitest": "^3.0.5"
   },
   "dependencies": {
-    "@types/pino": "^7.0.4",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "nanoid": "^5.0.9",

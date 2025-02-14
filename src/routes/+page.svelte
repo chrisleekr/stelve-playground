@@ -43,7 +43,9 @@
   // WebSocket setup
   function setupWebSocket(): WebSocket {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const wsUrl = `${protocol}//${window.location.host}/websocket`;
+
+    const wsPort = import.meta.env.PUBLIC_WS_PORT || 3000;
+    const wsUrl = `${protocol}//${window.location.hostname}:${wsPort}/websocket`;
     const socket = new WebSocket(wsUrl);
 
     socket.onopen = handleConnectionOpen;
